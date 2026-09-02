@@ -1,12 +1,19 @@
 <?php
-echo "hello world!"; // lühike komm
-/*
-*pikk kommentaar 
-*/
-$name = "Nimi";
-$age = 22;
-echo $age; 
-$age = $age * 2 * 3 * 4;
-echo $age;
-echo 2 + 3;
-?>
+$test = 10;
+$test = 3.1;
+$test = "hello world";
+$test = "õpilane";
+$test = true;
+$test = false;
+$test = null;
+$lol;
+var_dump($test);
+var_dump($lol);
+$test = [1, 2, "three", true];
+var_dump($test);
+$test = new stdClass();
+$test ->name = "Jhon";
+var_dump($test);
+$num1 = 10;
+$num2 = "10";
+var_dump($num1 === $num2);
