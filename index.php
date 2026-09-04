@@ -1,19 +1,18 @@
 <?php
 $test = 10;
-$test = 3.1;
-$test = "hello world";
-$test = "õpilane";
-$test = true;
-$test = false;
-$test = null;
-$lol;
+$test = 10 + 2;
+$test = 10 - 2;
+$test = 10 * 2;
+$test = 10 / 2;
+$test = $test - 1;
+$test -= 1; // teeb sama mida 7 rida 
+$test += 1;
+$test /= 1;
+$test = 10 % 3; //jäägiga jagamine
+$test++;
+$test--;
+$test = (10 + (2 - 3) * 4) /2;
+$test %= 2;
+$test = 2 ** 4;
+$test **= 3;
 var_dump($test);
-var_dump($lol);
-$test = [1, 2, "three", true];
-var_dump($test);
-$test = new stdClass();
-$test ->name = "Jhon";
-var_dump($test);
-$num1 = 10;
-$num2 = "10";
-var_dump($num1 === $num2);
