@@ -1,49 +1,37 @@
 <?php
 
-function hello(): void {
-var_dump('hello');
-}
-$hi = hello();
-var_dump($hi);
-hello();
+class Box {
+    public $width;
+    public $height;
+    public $length;
+    public $isOpen = false;
+    public $hasBeenOpened = false;
 
-function helloName($name) {
-var_dump("hello, $name!");
-}
-
-helloName('kaspar');
-helloName('martin');
-
-function helloNameAndAge($name, $age) {
-    var_dump("hello, $name ! You are $age years old");
-}
-helloNameAndAge('kaspar', 32);
-
-
-
-$test = function (){
-
-};
-
-var_dump($test);
-
-$numbers = [1, 2, 3, 4];
-$squares = array_map(function ($n) {
-return $n * $n;
-}, $numbers);
-$squares = array_map(fn ($n) => $n * $n, $numbers);
-var_dump($squares);
-
-function cube(int $a): Int|String {
-    if($a < 0) {
-   return 'no negative!';
+     public function open() {
+        $this->isOpen = true;
+        $this->hasBeenOpened = true;
     }
-return $a * $a * $a;
-var_dump('blaaaaa');
+
+    public function close() {
+        $this->isOpen = false;
     }
-    var_dump(cube(4));
+    public function volume() {
+        return $this->height * $this->length * $this->width;
+    }
+}
 
-    $anwser = cube('jfloewan');
-    $text = "cube of 5 is $ansWer!";
-    echo $text;
+$box1 = new Box();
+$box1 ->width = 10;
+$box1 ->height = 20;
+$box1 ->length = 30;
+$box1->open();
+var_dump($box1);
+var_dump($box1->volume());
 
+$box2 = new Box();
+$box2 ->width = 10;
+$box2 ->height = 20;
+$box2 ->length = 30;
+var_dump($box2);
+var_dump($box1->volume());
+var_dump($box1);
