@@ -1,38 +1,49 @@
 <?php
- 
-for($i=0; $i<10; $i++) {
-    var_dump($i);
+
+function hello(): void {
+var_dump('hello');
 }
- 
-for($i=9; $i>=0; $i--) {
-    var_dump($i);
+$hi = hello();
+var_dump($hi);
+hello();
+
+function helloName($name) {
+var_dump("hello, $name!");
 }
- 
-for($i=2; $i<1_000_000; $i*=2) {
-    var_dump($i);
+
+helloName('kaspar');
+helloName('martin');
+
+function helloNameAndAge($name, $age) {
+    var_dump("hello, $name ! You are $age years old");
 }
- 
-$time = time();
-$n = 0;
-while($time+1 > time()) {
-    $n++;
-}
-var_dump($n);
- 
-while(false){
-    var_dump('WHILE');
-}
- 
-do {
-    var_dump('DO');
-} while(false);
- 
-// while(true){
- 
-//}
- 
-$fruits = ['apple', 'banana', 'cherry'];
- 
-foreach($fruits as $key=>$fruit) {
-    var_dump($fruit, $key);
-}
+helloNameAndAge('kaspar', 32);
+
+
+
+$test = function (){
+
+};
+
+var_dump($test);
+
+$numbers = [1, 2, 3, 4];
+$squares = array_map(function ($n) {
+return $n * $n;
+}, $numbers);
+$squares = array_map(fn ($n) => $n * $n, $numbers);
+var_dump($squares);
+
+function cube(int $a): Int|String {
+    if($a < 0) {
+   return 'no negative!';
+    }
+return $a * $a * $a;
+var_dump('blaaaaa');
+    }
+    var_dump(cube(4));
+
+    $anwser = cube('jfloewan');
+    $text = "cube of 5 is $ansWer!";
+    echo $text;
+
