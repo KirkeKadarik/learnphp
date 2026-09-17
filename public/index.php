@@ -2,111 +2,29 @@
 if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/', $_SERVER["REQUEST_URI"])) {
     return false;    // serve the requested resource as-is.
 }
-
-function dump(...$var)
-{
-    echo '<pre>';
-    var_dump(...$var);
-    echo '</pre>';
-}
-
-switch ($_SERVER['REQUEST_URI']) {
-    case '/':
-        $title = 'World';
-$posts = [
-  [
-    'title' => 'some world title 1',
-   'content' => 'some world content 1',
-    'date' => 'January 1, 2021',
-     'author' => 'Pets',
-     ],
-
-  ['title' => 'some world title 2',
-   'content' => 'some world content 2',
-    'date' => 'January 2, 2021',
-     'author' => 'Dogs',
-      ],
-
-  ['title' => 'some world title 3',
-   'content' => 'some world content 3',
-    'date' => 'January 3, 2021',
-     'author' => 'Cats',
-     ],
-     
-['title' => 'some world title 4',
-   'content' => 'some world content 4',
-    'date' => 'January 4, 2021',
-     'author' => 'Seals',
-     ],
-    
-];
-
-        include __DIR__ . '/../views/index.php';
-        break;
-
-    case '/us':
-        $title = 'U.S.';
-$posts = [
-  [
-    'title' => 'some U.S world title 1',
-   'content' => 'some U.S world content 1',
-    'date' => 'January 1, 2021',
-     'author' => 'Pets',
-     ],
-
-  ['title' => 'some U.S world title 2',
-   'content' => 'some U.S world content 2',
-    'date' => 'January 2, 2021',
-     'author' => 'Dogs',
-      ],
-
-  ['title' => 'some U.S world title 3',
-   'content' => 'some U.S world content 3',
-    'date' => 'January 3, 2021',
-     'author' => 'Cats',
-     ],
-     
-['title' => 'some U.S world title 4',
-   'content' => 'some U.S world content 4',
-    'date' => 'January 4, 2021',
-     'author' => 'Seals',
-     ],
-    
-];
-        include __DIR__ . '/../views/us.php';
-        break;
-
-    case '/tech':
-        $title = 'Tech';
-$posts = [
-  [
-    'title' => 'some Technology title 1',
-   'content' => 'some Technology content 1',
-    'date' => 'January 1, 2021',
-     'author' => 'Pets',
-     ],
-
-  ['title' => 'some Technology title 2',
-   'content' => 'some Technology content 2',
-    'date' => 'January 2, 2021',
-     'author' => 'Dogs',
-      ],
-
-  ['title' => 'some Technology title 3',
-   'content' => 'some Technology content 3',
-    'date' => 'January 3, 2021',
-     'author' => 'Cats',
-     ],
-     
-['title' => 'some Technology title 4',
-   'content' => 'some Technology content 4',
-    'date' => 'January 4, 2021',
-     'author' => 'Seals',
-     ],
-    
-];
-        include __DIR__ . '/../views/tech.php';
-        break;
-    default:
-        echo '404';
+ 
+ 
+spl_autoload_register(function ($class){
+    $class = substr($class,4);
+    $class = str_replace('\\', '/', $class);
+    require_once __DIR__ . "/../src/$class.php";
+});
+ 
+require __DIR__ . '/../helpers.php';
+require __DIR__ . '/../routes.php';
+ 
+$router = new App\Router($_SERVER['REQUEST_URI']);
+$match = $router->match();
+if($match) {
+    if(is_callable($match['action'])) {
+        call_user_func($match['action']);
+    } else if(is_array($match['action'])) {
+        $class = $match['action'][0];
+        $controller = new $class();
+        $method = $match['action'][1];
+        $controller->$method();
+    }
+   
+} else {
+    echo 404;
 }
