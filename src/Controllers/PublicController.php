@@ -97,5 +97,11 @@ class PublicController
             ],
         ];
         view('tech', compact('title', 'posts'));
+
     }
+
+     public function forms() {
+        view('forms');
+        }
 }
+
