@@ -1,5 +1,5 @@
           <h3 class="pb-4 mb-4 fst-italic border-bottom">From the Firehose</h3>
-          <?php foreach ($articles as $article): ?>
+          <?php foreach (($articles ?? []) as $article): ?>
           <article class="blog-post">
 
             <h2 class="blog-post-title mb-1"><?=$article->title?></h2>
