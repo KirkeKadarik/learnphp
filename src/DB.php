@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Article;
 use PDO;
 use PDOException;
 
@@ -12,7 +13,7 @@ class DB {
     public function __construct()
     {
         try {
-            $this->conn = new PDO("sqlite:" . __DIR__ . '/../../db.sqlite');
+            $this->conn = new PDO("sqlite:" . __DIR__ . '/../db.sqlite');
             // set the PDO error mode to exception
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
@@ -20,12 +21,12 @@ class DB {
         }
     }
 
-    public function all()
+    public function all($table, $class)
     {
 
-        $sql = "SELECT * FROM Articles";
+        $sql = "SELECT * FROM $table";
         $result = $this->conn->query($sql);
-        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->setFetchMode(PDO::FETCH_CLASS, $class);
         return $result->fetchAll();
     }
 }
