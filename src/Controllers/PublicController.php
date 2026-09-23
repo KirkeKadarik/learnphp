@@ -8,46 +8,20 @@ use App\Models\User;
 
 class PublicController
 {
-public function index()
+  public function index()
   {
-  
-   $articles = Article::all();
-   dump($articles);
-   $users = User::all();
-   dump($users);
 
+    $articles = Article::all();
+    $title = 'World';
+    view('index', compact('title', 'articles'));
   }
 
   public function us()
   {
+    $articles = Article::all();
     $title = 'U.S';
-    $posts = [
-      [
-        'title' => 'Some U.S title 1',
-        'content' => 'Some U.S content 1',
-        'date' => 'Jan 1, 2026',
-        'author' => 'Pets',
-      ],
-      [
-        'title' => 'Some U.S title 2',
-        'content' => 'Some U.S content 2',
-        'date' => 'Nov 29, 2023',
-        'author' => 'Steve',
-      ],
-      [
-        'title' => 'Some U.S title 3',
-        'content' => 'Some U.S content 3',
-        'date' => 'May 20, 2009',
-        'author' => 'Alex',
-      ],
-      [
-        'title' => 'Some U.S title 4',
-        'content' => 'Some U.S content 4',
-        'date' => 'Sept 13, 2018',
-        'author' => 'Tommi sularaha',
-      ],
-    ];
-    view('us', compact('title', 'posts'));
+    
+    view('us', compact('title', 'articles'));
   }
 
   public function tech()
