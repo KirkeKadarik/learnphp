@@ -19,4 +19,14 @@ abstract class Model {
         $db = new DB();
         $db->insert(static::$table, $fields);
     }
+
+        public static function find($id) {
+        $db = new DB();
+        return $db->find(static::$table, static::class, $id);
+    }
+
+        public static function where($fieldName, $value) {
+        $db = new DB();
+        return $db->where(static::$table, static::class, $fieldName, $value);
+    }
 }
