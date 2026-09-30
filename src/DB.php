@@ -44,7 +44,7 @@ class DB {
     }
 
     public function where($table, $class, $fieldName, $value) {
-        $sql = "SELECT * FROM $table WHERE $fieldName = :value";
+        $sql = "SELECT * FROM $table WHERE $fieldName='$value'";
         $stmt = $this->conn->query($sql);
         $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
         return $stmt->fetchAll();
