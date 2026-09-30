@@ -38,8 +38,8 @@
             </ul>
           </div>
         <?php else: ?>
-          <a class="btn btn-sm btn-outline-secondary" href="register">Sign up</a>
-          <a class="btn btn-sm btn-outline-primary" href="login">login</a>
+          <a class="btn btn-sm btn-outline-secondary" href="/register">Sign up</a>
+          <a class="btn btn-sm btn-outline-primary" href="/login">login</a>
         <?php endif; ?>
       </div>
     </div>
