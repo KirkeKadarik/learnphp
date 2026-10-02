@@ -1,0 +1,12 @@
+{
+    "name": "kirke.kadarik/learnphp",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/var-dumper": "^8.1"
+    }
+}
