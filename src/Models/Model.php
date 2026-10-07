@@ -29,4 +29,11 @@ abstract class Model {
         $db = new DB();
         return $db->where(static::$table, static::class, $fieldName, $value);
     }
+
+public function delete()
+{
+    $db = new DB();
+    return $db->delete(static::$table, $this->id);
+}
+
 }

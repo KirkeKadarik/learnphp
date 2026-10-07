@@ -49,4 +49,13 @@ class DB {
         $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
         return $stmt->fetchAll();
     }
+
+    public function delete($table, $id)
+{
+    $sql = "DELETE FROM $table WHERE id = :id";
+    $stmt = $this->conn->prepare($sql);
+ 
+    return $stmt->execute(['id' => $id]);
+}
+
 }
